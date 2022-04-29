@@ -2,17 +2,20 @@ from pathlib import Path
 
 #list reset
 
-path = str(input("Input a path to 'GarrysMod' folder (with the folder included in the path)"))
-
-with open('urllist.txt', 'w') as f:
-    f.write("")
-with open('addonlist.txt' , 'w') as f:
-    f.write("")
+path = str(input("Input a path to 'GarrysMod' folder with the folder included in the path: "))
+try:
+    with open('urllist.txt', 'w') as f:
+        f.write("")
+    with open('addonlist.txt' , 'w') as f:
+        f.write("")
+except FileNotFoundError:
+    print("Text files missing. Add the required text files manually in the same directory as this program: \n addonlist.txt \n savedlist.txt \ urllist.txt")
 
 #actual code
 
 print("@" * 20)
-entries = Path(path + 'garrysmod\\addons')
+entries = Path(path + '\\garrysmod\\addons')
+print("Path loaded succesfully!")
 for entry in entries.iterdir():
     splitentry = (str(entry.name).split('_')[-1])
     print(splitentry)
