@@ -2,7 +2,7 @@ from pathlib import Path
 from time import sleep ;import webbrowser 
 
 def dirreader():
-    path = str(input("Input a path to 'GarrysMod' folder with the folder included in the path: "))
+    path = str(input("Example: D:\Program Files (x86)\Steam\steamapps\common\GarrysMod \nInput a path to 'GarrysMod' folder with the folder included in the path: "))
     
     #list reset
     
