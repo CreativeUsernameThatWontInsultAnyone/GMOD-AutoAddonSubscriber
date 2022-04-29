@@ -35,7 +35,7 @@ def dirreader():
         except ValueError:
             print(fin_entry)
             print("*" * 20)
-    if str(input("Do you wanna save the generate list? \n It's required in order to use the autosub program \n y/n \n ")) == 'y':
+    if str(input("Do you wanna save the generated list? \n It's required in order to use the autosub program \n y/n \n ")) == 'y':
         with open('savedlist.txt', 'w') as f:
             f.write("")
         with open('urllist.txt','r') as urllist, open('savedlist.txt','a') as savedlist:
