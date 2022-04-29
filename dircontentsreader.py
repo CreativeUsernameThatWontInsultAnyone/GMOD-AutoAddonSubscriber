@@ -1,45 +1,68 @@
 from pathlib import Path
+from time import sleep ;import webbrowser 
 
-#list reset
-
-path = str(input("Input a path to 'GarrysMod' folder with the folder included in the path: "))
-try:
-    with open('urllist.txt', 'w') as f:
-        f.write("")
-    with open('addonlist.txt' , 'w') as f:
-        f.write("")
-except FileNotFoundError:
-    print("Text files missing. Add the required text files manually in the same directory as this program: \n addonlist.txt \n savedlist.txt \ urllist.txt")
-
-#actual code
-
-print("@" * 20)
-entries = Path(path + '\\garrysmod\\addons')
-print("Path loaded succesfully!")
-for entry in entries.iterdir():
-    splitentry = (str(entry.name).split('_')[-1])
-    print(splitentry)
-    fin_entry = str(splitentry.strip(".gma"))
-    print(fin_entry)
-    print("*" * 20)
+def dirreader():
+    path = str(input("Input a path to 'GarrysMod' folder with the folder included in the path: "))
+    
+    #list reset
+    
     try:
-        fin_entry = int(fin_entry)
-        url = "https://steamcommunity.com/sharedfiles/filedetails/?id=" + str(fin_entry) + "\n"
-        with open('urllist.txt', 'a') as f:
-            f.write(url)
-        with open('addonlist.txt' , 'a') as f:
-            f.write(str(fin_entry) + "\n")
-    except ValueError:
+        with open('urllist.txt', 'w') as f:
+            f.write("")
+        with open('addonlist.txt' , 'w') as f:
+            f.write("")
+    except FileNotFoundError:
+        print("Text files missing. Add the required text files manually in the same directory as this program: \n addonlist.txt \n savedlist.txt \ urllist.txt")
+
+    #actual code
+
+    print("@" * 20)
+    entries = Path(path + '\\garrysmod\\addons')
+    print("Path loaded succesfully!")
+    for entry in entries.iterdir():
+        splitentry = (str(entry.name).split('_')[-1])
+        print(splitentry)
+        fin_entry = str(splitentry.strip(".gma"))
         print(fin_entry)
         print("*" * 20)
-if int(input("Do you wanna save the generate list? \n It's required in order to use the autosub program \n 0/1 \n ")) == 0:
-    with open('savedlist.txt', 'w') as f:
-        f.write("")
-    with open('urllist.txt','r') as urllist, open('savedlist.txt','a') as savedlist:
-        for line in urllist:
-            savedlist.write(line)
-else:
-    exit()
+        try:
+            fin_entry = int(fin_entry)
+            url = "https://steamcommunity.com/sharedfiles/filedetails/?id=" + str(fin_entry) + "\n"
+            with open('urllist.txt', 'a') as f:
+                f.write(url)
+            with open('addonlist.txt' , 'a') as f:
+                f.write(str(fin_entry) + "\n")
+        except ValueError:
+            print(fin_entry)
+            print("*" * 20)
+    if str(input("Do you wanna save the generate list? \n It's required in order to use the autosub program \n y/n \n ")) == 'y':
+        with open('savedlist.txt', 'w') as f:
+            f.write("")
+        with open('urllist.txt','r') as urllist, open('savedlist.txt','a') as savedlist:
+            for line in urllist:
+                savedlist.write(line)
+    else:
+        exit()
 
-#autosubfeature using saved lists
-#instructions
+    #autosubfeature using saved lists
+    #instructions
+
+def autosubber():
+    new = 2     # open in a new tab, if possible
+    browser = str(input("Which browser are you using: mozilla \n opera \n google-chrome \n chrome \n"))
+    print("If succesful, this will open the required workshop mod in your browser \n")
+    with open('savedlist.txt' , 'r') as savedlist:
+        for line in savedlist:
+            webbrowser.get(using=str(browser)).open(line,new=new) # open a public URL
+            sleep(6)
+def main():
+    try:
+        choice = int(input("Which program do you wanna use? \n 1. Dirreader - if this is your first time use this first \n Read README.md \n 2. Autosubber \n"))
+        if choice == 1:
+            dirreader()
+        if choice == 2:
+            autosubber()
+    except ValueError:
+        print("Wrong input buddy")
+        main()
+main()
