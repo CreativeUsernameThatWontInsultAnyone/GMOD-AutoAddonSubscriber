@@ -44,17 +44,18 @@ def dirreader():
     else:
         exit()
 
-    #autosubfeature using saved lists
     #instructions
 
 def autosubber():
-    new = 2     # open in a new tab, if possible
-    browser = str(input("Which browser are you using: mozilla \n opera \n google-chrome \n chrome \n"))
+    #new = 2     # open in a new tab, if possible
+    #browser = str(input("Which browser are you using: \n mozilla \n opera \n google-chrome \n chrome \n"))
     print("If succesful, this will open the required workshop mod in your browser \n")
     with open('savedlist.txt' , 'r') as savedlist:
-        for line in savedlist:
-            webbrowser.get(using=str(browser)).open(line,new=new) # open a public URL
-            sleep(6)
+        for url in savedlist:
+            webbrowser.open_new_tab(url)
+            #webbrowser.get(using=str(browser)).open(line,new=new) # open a public URL
+            sleep(4)
+            print(url, "*" * 20)
 def main():
     try:
         choice = int(input("Which program do you wanna use? \n 1. Dirreader - if this is your first time use this first \n Read README.md \n 2. Autosubber \n"))
