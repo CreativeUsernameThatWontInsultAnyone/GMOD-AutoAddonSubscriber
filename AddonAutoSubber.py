@@ -50,7 +50,7 @@ def dirreader():
 
 def autosubber():
     try:
-        first_run_check = int(input("Is this your first time running this? This software requires selenium and a proper webbrowser driver. \n I'll guide you through the process. \n y/n \n"))
+        first_run_check = str(input("Is this your first time running this? This software requires selenium and a proper webbrowser driver. \n I'll guide you through the process. \n y/n \n"))
     except ValueError:
         print("Wrong input homie.\n")
         autosubber()
