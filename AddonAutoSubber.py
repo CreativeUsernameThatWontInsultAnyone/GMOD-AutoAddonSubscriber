@@ -66,6 +66,7 @@ def autosubber():
         else:
             input("Please install Chrome and rerun this program \n Press a key to exit")
             exit()
+    else:
         PATH = str(input("Example: C:\Folder\chromedriver.exe \n Provide me the full path to the Chrome webdriver:  "))
         driver = webdriver.Chrome(PATH)
 
