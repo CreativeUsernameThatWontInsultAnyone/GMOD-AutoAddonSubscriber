@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.keys import Keys
 #from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
+#from selenium.webdriver.support.ui import WebDriverWait
 import subprocess
 #
 
@@ -46,7 +46,6 @@ def dirreader(): # Option to store the addon path
         except ValueError:
             print(fin_entry)
             print("*" * 20)
-            return url
     if str(input("Do you wanna save the generated list? \n It's required in order to use the autosub program \n y/n \n ")) == 'y':
         with open('savedlist.txt', 'w') as f:
             f.write("")
@@ -57,6 +56,7 @@ def dirreader(): # Option to store the addon path
         exit()
 
     # instructions
+    # add an option to run this using chrome.
 
 def install_help(): #helps setup the required software. Runs some code in cmd to install selenium and a webdriver-manager
     try:
@@ -76,8 +76,8 @@ def install_help(): #helps setup the required software. Runs some code in cmd to
         if browser_check == "y":
             print("Great, we shall now proceed with installing a Firefox driver for selenium. I suggest you put it into an easily accesible folder \n Here's the link: https://github.com/mozilla/geckodriver/releases/tag/v0.31.0 \n")
             with open('driverpath.txt' ,'w') as driverpath:
-                path = input("Example: C:\Folder\geckodriver.exe \n Provide me the full path to the browser webdriver: ")
-                driverpath.write(path)
+                PATH = input("Example: C:\Folder\geckodriver.exe \n Provide me the full path to the browser webdriver: ")
+                driverpath.write(PATH)
         else:
             input("Please install Firefox and rerun this program \n Press key to exit")
             exit()
@@ -101,8 +101,8 @@ def mod_install(): #opens new tabs in the browser and uses .click to click on th
 
             # Maybe search for the 3rd party mods on google?
     
-            page_username = driver.find_element(By.NAME, 'username')
-            page_password = driver.find_element(By.NAME, 'password')
+            page_username = driver.find_element(By.NAME, 'username')    # Store sensitive data as enviroment variables  
+            page_password = driver.find_element(By.NAME, 'password')    # Or at least make it so input is invisible to the user.
             
             page_username.clear()
             page_password.clear()
@@ -113,7 +113,7 @@ def mod_install(): #opens new tabs in the browser and uses .click to click on th
             steam_guard = str(input("Steam guard: ")).upper()
             print("\n\n\n\n\n\n\n\n\n\n\n\n")
             driver.find_element(By.ID, 'twofactorcode_entry').send_keys(steam_guard, Keys.ENTER)
-            # Just as a precaution. I'm paranoid about usersafety 
+            # Just as a precaution. I'm paranoid about user safety 
             username = ""
             password = ""
             steam_guard = ""
@@ -140,8 +140,8 @@ def mod_install(): #opens new tabs in the browser and uses .click to click on th
 
 def driver_change_path():
     with open('driverpath.txt' ,'w') as f:
-        path = str(input("Provide the path \n"))
-        f.write(path)
+        PATH = str(input("Provide the path \n"))
+        f.write(PATH)
 
 def driver_read_path():
     with open('driverpath.txt' , 'r') as f:
@@ -164,4 +164,10 @@ def main(): #main menu function that asks the user what he wants to do and calls
     except ValueError:
         print("Wrong input buddy!")
         main()
+__name__ == '__main__'
 main()
+
+# To do
+
+# Handle wrong ID's
+# Save foldernames for mods installed externally
