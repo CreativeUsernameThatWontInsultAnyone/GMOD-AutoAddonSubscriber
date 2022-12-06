@@ -8,3 +8,5 @@ NOTE: I plan to make this also support Chrome and Chromium in the future. If you
 Evening | 5/2/2022 - I was unable to get the selenium part to work. I'll get to it tomorrow, I've been working on it for 4 hours now and there is just one freaking bug I need to squash.
 
 Early Morning | 5/8/2022 - Finished. Took me a lot longer than I expected. Loved coding this and I'm glad I got to learn so much about Selenium.
+
+Edit 2022/6/12. Project Deprecated, should still work tho
